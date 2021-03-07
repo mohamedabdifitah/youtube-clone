@@ -1,0 +1,169 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>
+    LOW LIGHT PHOTOGRAPHY - Taking BETTER shots in BAD conditions
+  </title>
+  <link rel="icon" href="https://s.ytimg.com/yts/img/favicon_32-vflOogEID.png" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'css/styles.css'%}" />
+  <link rel="stylesheet" href="{% static 'css/album.css'%}" />
+</head>
+
+<body>
+  <nav class="nav">
+    <div class="menu">
+      <i class="material-icons">menu</i>
+      <a href="{% url 'home'%}"><img class="youlogo" src="{% static '/assets/youlogo.png'%}" /></a>
+    </div>
+    <form class="" action="" method="post">
+     {% csrf_token %}
+      <div class="searchbar">
+      <input type="search" name="search" id="search" placeholder="Search" />
+      <div class="search-btn" >
+        <i class="material-icons search-icon">search</i>
+      </div>
+    </div>
+    </form>
+  
+    <div class="feature-icons">
+      <i class="material-icons">video_call</i>
+      <i class="material-icons">apps</i>
+      <i class="material-icons">message</i>
+      <i class="material-icons">notifications</i>
+      <span class="bell-icon-badge">9+</span>
+      <i class="material-icons account-icon">account_circle</i>
+    </div>
+  </nav>
+  <main>
+    <section class="player">
+      <div class="youtube-player">
+     <iframe width="560" height="315" src="{{resultpage}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="video-info">
+        <h1 class="title">
+          {{resultingpage.title}}
+        </h1>
+        <div class="video-toolbar">
+          <span class="video-views">
+            599,043 views
+          </span>
+          <span class="right-menu">
+            <div class="thumb-wrapper">
+              <a class="thumb-up-btn">
+                <i class="material-icons">thumb_up</i>
+                <span class="thumbs-count">26K</span>
+              </a>
+
+              <a class="thumb-down-btn">
+                <i class="material-icons">thumb_down</i>
+                <span class="thumbs-count">361</span>
+              </a>
+            </div>
+
+            <a class="share-btn">
+              <i class="material-icons">reply</i>
+              <span>SHARE</span>
+            </a>
+
+            <a class="save-btn">
+              <i class="material-icons">playlist_add</i>
+              <span>SAVE</span>
+            </a>
+            <a class="options-btn">
+              <i class="material-icons">more_horiz</i>
+            </a>
+          </span>
+        </div>
+      </div>
+
+      <section class="channel-info">
+        <div class="avatar">
+          <div></div>
+        </div>
+        <div class="description">
+          <h2>{{resultingpage.ChannelTitle}}</h2>
+          <h3>{{resultingpage.publishedAt}}</h3>
+          <p>{{resultingpage.description}}</p>
+          <p class="show-more">show more</p>
+        </div>
+        <div class="subscribe">
+          <button> subscribe <span>293K</span></button>
+        </div>
+      </section>
+
+      <section class="comments">
+        <div class="comment-toolbar">
+          <div class="comment-count">
+            <span>80</span>
+            <span>Comments</span>
+          </div>
+          <div class="comment-count">
+            <i class="material-icons">sort</i>
+            <span>SORT BY</span>
+          </div>
+        </div>
+        <div class="add-comment">
+          <i class="material-icons account-icon">account_circle</i>
+          <input type="text" placeholder="Add a public comment...">
+        </div>
+        {% for comments in comments_video %}
+        <div class="comment">
+          <div class="comment-avatar">
+            <img src="{{comments.authorProfileImageUrl}}" alt="comment-ava">
+          </div>
+     
+          <div class="comment-info">
+            <h3>{{comments.authorDisplayName}}<span>{{comments.publishedAt}}</span></h3>
+            <p>{{comments.textDisplay}}</p>
+            <div>
+              <a class="thumb-up-btn">
+                <i class="material-icons">thumb_up</i>
+                <span class="thumbs-count">{{comments.likeCount}}</span>
+              </a>
+              <a class="thumb-up-btn">
+                <i class="material-icons">thumb_down</i>
+                <span class="thumbs-count">10K</span>
+              </a>
+              <a> {{comments.totalReplyCount}} REPLY</a>
+            </div>
+          </div>
+        </div>
+
+    {% endfor %}
+      </section>
+
+
+
+    </section>
+
+    <section class="sidebar">
+      {% for video in videos %}
+      <div class="suggested-video">
+        <div class="thumbnail">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/{{video.id.videoId}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+          <span>17:30</span>
+        </div>
+        <div class="thumbnail-info">
+          <h2>{{video.videoTitle}}</h2>
+          <div class="channel">{{video.ChannelTitle}}</div>
+          <div class="views">792K views</div>
+        </div>
+      </div>
+      {% endfor %}
+    </section>
+
+
+
+  </main>
+
+</body>
+
+</html>

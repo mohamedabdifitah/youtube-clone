@@ -48,6 +48,7 @@ idna==2.10
 imageio==2.9.0
 imageio-ffmpeg==0.4.2
 Jinja2==2.11.2
+whitenoise==5.2.0
 
 keyring==21.5.0
 pi==0.1.2

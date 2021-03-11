@@ -25,8 +25,7 @@ SECRET_KEY = 'cz=&%f*9(d*zo$_55p=(p)(eki#p$pb^0159-)8k^6$9c3l&_b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["myyoutubeapi1.herokuapp.com","127.0.0.1"
-]
+ALLOWED_HOSTS = ['127.0.0.1',"myyoutubeapi1.herokuapp.com"]
 
 
 # Application definition
@@ -45,6 +44,7 @@ INSTALLED_APPS = [
 CRISPY_TEMPLATE_PACK='bootstrap4'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
